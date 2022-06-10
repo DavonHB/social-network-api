@@ -1,4 +1,4 @@
-const {Users} = require('../models');
+const { Users } = require('../models');
 
 const usersController = {
     
@@ -17,7 +17,6 @@ const usersController = {
         // populate user friends
         .populate({path: 'friends', select: '-__v'})
         .select('-__v')
-        // .sort({_id: -1})
         .then(dbUsersData => res.json(dbUsersData))
         .catch(err => {
             console.log(err);
@@ -34,7 +33,7 @@ const usersController = {
         // return if no user is found 
         .then(dbUsersData => {
             if(!dbUsersData) {
-                res.status(404).json({message: 'No User with this particular ID!'});
+                res.status(404).json({message: 'No User with this id!'});
                 return; 
             }
             res.json(dbUsersData)
@@ -50,7 +49,7 @@ const usersController = {
         Users.findOneAndUpdate({_id: params.id}, body, {new: true, runValidators: true})
         .then(dbUsersData => {
             if(!dbUsersData) {
-                res.status(404).json({message: 'No User with this particular ID!'});
+                res.status(404).json({message: 'No User with this id!'});
                 return;
             }
             res.json(dbUserData);
@@ -62,7 +61,7 @@ const usersController = {
         Users.findOneAndDelete({_id: params.id})
         .then(dbUsersData => {
             if(!dbUsersData) {
-                res.status(404).json({message: 'No User with this particular ID!'});
+                res.status(404).json({message: 'No User with this id!'});
                 return;
             }
             res.json(dbUsersData);
@@ -77,7 +76,7 @@ const usersController = {
         .select('-__v')
         .then(dbUsersData => {
             if (!dbUsersData) {
-                res.status(404).json({message: 'No User with this particular ID!'});
+                res.status(404).json({message: 'No User with this id!'});
                 return;
             }
         res.json(dbUsersData);
@@ -92,7 +91,7 @@ const usersController = {
         .select('-__v')
         .then(dbUsersData => {
             if(!dbUsersData) {
-                res.status(404).json({message: 'No User with this particular ID!'});
+                res.status(404).json({message: 'No User with this id!'});
                 return;
             }
             res.json(dbUsersData);

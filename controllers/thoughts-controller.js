@@ -1,4 +1,4 @@
-const {Thoughts, Users} = require('../models');
+const { Thoughts, Users } = require('../models');
 
 const thoughtsController = {
 
@@ -10,7 +10,7 @@ const thoughtsController = {
         })
         .then(dbThoughtsData => {
             if(!dbThoughtsData) {
-                res.status(404).json({message: 'No thoughts with this particular ID!'});
+                res.status(404).json({message: 'No thoughts with this id!'});
                 return;
             }
             res.json(dbThoughtsData)
@@ -23,7 +23,6 @@ const thoughtsController = {
         Thoughts.find({})
         .populate({path: 'reactions', select: '-__v'})
         .select('-__v')
-        // .sort({_id: -1})
         .then(dbThoughtsData => res.json(dbThoughtsData))
         .catch(err => {
             console.log(err);
@@ -38,7 +37,7 @@ const thoughtsController = {
         .select('-__v')
         .then(dbThoughtsData => {
             if(!dbThoughtsData) {
-            res.status(404).json({message: 'No thoughts with this particular ID!'});
+            res.status(404).json({message: 'No thoughts with this id!'});
             return;
         }
         res.json(dbThoughtsData)
@@ -56,7 +55,7 @@ const thoughtsController = {
         .select('-___v')
         .then(dbThoughtsData => {
             if (!dbThoughtsData) {
-                res.status(404).json({message: 'No thoughts with this particular ID!'});
+                res.status(404).json({message: 'No thoughts with this id!'});
                 return;
             }
                 res.json(dbThoughtsData);
@@ -69,7 +68,7 @@ const thoughtsController = {
         Thoughts.findOneAndDelete({_id: params.id})
         .then(dbThoughtsData => {
             if (!dbThoughtsData) {
-                res.status(404).json({message: 'No thoughts with this particular ID!'});
+                res.status(404).json({message: 'No thoughts with this id!'});
                 return;
             }
             res.json(dbThoughtsData);
@@ -84,7 +83,7 @@ const thoughtsController = {
         .select('-__v')
         .then(dbThoughtsData => {
         if (!dbThoughtsData) {
-            res.status(404).json({message: 'No thoughts with this particular ID!'});
+            res.status(404).json({message: 'No thoughts with this id!'});
             return;
         }
         res.json(dbThoughtsData);
@@ -98,7 +97,7 @@ const thoughtsController = {
         Thoughts.findOneAndUpdate({_id: params.thoughtId}, {$pull: {reactions: {reactionId: params.reactionId}}}, {new : true})
         .then(dbThoughtsData => {
             if (!dbThoughtsData) {
-                res.status(404).json({message: 'No thoughts with this particular ID!'});
+                res.status(404).json({message: 'No thoughts with this id!'});
                 return;
             }
             res.json(dbThoughtsData);
