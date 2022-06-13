@@ -4,7 +4,7 @@ const router = require('express').Router();
 const apiRoutes = require('./api');
 
 // add prefix
-router.use('api', apiRoutes);
+router.use('/api', apiRoutes);
 
 // err message
 router.use((req, res) => {
